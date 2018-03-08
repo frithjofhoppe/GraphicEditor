@@ -1,10 +1,7 @@
-import forms.Rectanlge;
 import forms.Shape;
-import oracle.jrockit.jfr.JFR;
 
 import javax.swing.*;
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Drawing extends JFrame {

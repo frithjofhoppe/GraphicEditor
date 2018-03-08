@@ -2,11 +2,11 @@ package forms;
 
 import java.awt.*;
 
-public class Rectanlge extends Shape{
-    int length;
-    int width;
+public class Rectangle extends Shape{
+    protected int length;
+    protected int width;
 
-    public Rectanlge(int posX1, int posY1, int length, int width) {
+    public Rectangle(int posX1, int posY1, int length, int width) {
         super(posX1, posY1);
         this.length = length;
         this.width = width;

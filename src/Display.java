@@ -1,9 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-
-import forms.Rectanlge;
-import forms.Shape;
 
 public class Display extends JFrame {
     /** Die Liste der dargestellten Figur-Objekte */
@@ -21,7 +17,7 @@ public class Display extends JFrame {
         Point windowPosition = new Point(windowPositionX, windowPositionY);
         setLocation(windowPosition);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        createAndAddDrawingPanel();
+        //createAndAddDrawingPanel();
         setVisible(true);
     }
 
@@ -30,7 +26,7 @@ public class Display extends JFrame {
         this.drawing = drawing;
     }
 
-    private void createAndAddDrawingPanel() {
+    public void createAndAddDrawingPanel() {
         // Das JPanel-Objekt ist ein Objekt einer anonymen Unterklasse von JPanel
         // Siehe Java-Grundkurs Abschnitt 3.9
         add(new JPanel() {

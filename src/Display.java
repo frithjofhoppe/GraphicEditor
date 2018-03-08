@@ -7,8 +7,7 @@ import forms.Shape;
 
 public class Display extends JFrame {
     /** Die Liste der dargestellten Figur-Objekte */
-    private ArrayList shapes = new ArrayList<Shape>();
-
+    public Drawing drawing;
     /**
      * Konstruktor. Initialisiert das Fenster in der Mitte des Bildschirms und erzeugt ein
      * JFrame-Objekt, auf welchem die Figuren gezeichnet werden.
@@ -27,6 +26,10 @@ public class Display extends JFrame {
     }
 
 
+    public void setDrawing(Drawing drawing){
+        this.drawing = drawing;
+    }
+
     private void createAndAddDrawingPanel() {
         // Das JPanel-Objekt ist ein Objekt einer anonymen Unterklasse von JPanel
         // Siehe Java-Grundkurs Abschnitt 3.9
@@ -41,37 +44,11 @@ public class Display extends JFrame {
         });
     }
 
-
     /**
      * Zeichnet alle Figuren.
      * @param g Referenz auf das Graphics-Objekt zum zeichnen.
      */
-    private void zeichneFiguren(Graphics g) {
-        for (Shape f : shapes) {
-            if (f instanceof Rectanlge) {
-                Rectanlge r = (Rectanlge) f;
-                g.drawRect(r.getX(), r.getY(), r.getBreite(), r.getHoehe());
-            }
-      /* TODO: Hier muss für jede weitere Figur-Klasse, welche dargestellt werden können muss,
-       * ein analoger Abschnitt, wie für die Rechteck-Klasse folgen.
-       */
-        }
-    }
-
-    /**
-     * Fügt eine weitere Figur hinzu und löst die Auffrischung des Fensterinhaltes aus.
-     * @param figur Referenz auf das weitere Figur-Objekt.
-     */
-    public void hinzufuegen(Shape figur) {
-        shapes.add(figur);
-        repaint();
-    }
-
-    /**
-     * Löscht alle Figuren und löst die Auffrischung des Fensterinhaltes aus.
-     */
-    public void allesLoeschen() {
-        shapes.clear();
-        repaint();
+    private void drawShapes(Graphics g) {
+       drawing.drawShapes(g);
     }
 }

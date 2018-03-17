@@ -21,6 +21,8 @@ abstract public class Shape {
 
     public abstract void draw(Graphics graphics);
 
+    public abstract boolean containsPosition(int x, int y);
+
     public void move(int deltaX, int deltaY){
         posX1 += deltaX;
         posY1 += deltaY;

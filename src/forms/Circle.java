@@ -18,4 +18,13 @@ public class Circle extends Shape{
     public void draw(Graphics graphics) {
         graphics.drawOval(super.posX1, super.posY1, radius, radius);
     }
+
+    @Override
+    public boolean containsPosition(int x, int y) {
+        if(ShapeUtil.getDistance(posX1, posY1, x, y) <= radius)
+        {
+            return true;
+        }
+        return false;
+    }
 }

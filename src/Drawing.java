@@ -30,4 +30,13 @@ public class Drawing extends JFrame {
                a.draw(g);
            }
     }
+
+    public Shape getShapeAtPosition(int x, int y){
+        for(Shape s: shapes){
+            if(s.containsPosition(x,y)){
+                return s;
+            }
+        }
+        return null;
+    }
 }

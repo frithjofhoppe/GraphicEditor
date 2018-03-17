@@ -1,6 +1,4 @@
-import forms.Rectangle;
-import forms.RoundedRectangle;
-import forms.Shape;
+import forms.*;
 
 import java.util.ArrayList;
 
@@ -12,6 +10,8 @@ public class Main {
         ArrayList<Shape> shapes = new ArrayList<>();
         shapes.add(new Rectangle(50,50,100,100));
         shapes.add(new RoundedRectangle(300,300,100,100,20,20));
+        shapes.add(new Line(400,400,500,500));
+        shapes.add(new Circle(400,400,50));
 
         Drawing drawing = new Drawing(shapes);
 
@@ -19,10 +19,10 @@ public class Main {
         DISPLAY.createAndAddDrawingPanel();
 
         Thread.sleep(2000);
-
-        for(Shape s : shapes){
-            s.move(50,50);
-        }
+//
+//        for(Shape s : shapes){
+//            s.move(50,50);
+//        }
 
         DISPLAY.repaint();
     }

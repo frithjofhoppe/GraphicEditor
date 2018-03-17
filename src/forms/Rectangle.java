@@ -17,6 +17,11 @@ public class Rectangle extends Shape{
         graphics.drawRect(super.posX1, super.posY1, width, length);
     }
 
+    @Override
+    public boolean containsPosition(int x, int y) {
+        return false;
+    }
+
     public int getLength() {
         return length;
     }

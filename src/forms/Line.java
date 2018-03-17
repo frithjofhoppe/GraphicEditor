@@ -26,6 +26,11 @@ public class Line extends Shape{
     }
 
     @Override
+    public boolean containsPosition(int x, int y) {
+        return false;
+    }
+
+    @Override
     public void move(int deltaX, int deltaY) {
         super.move(deltaX, deltaY);
         posX2 += deltaX;

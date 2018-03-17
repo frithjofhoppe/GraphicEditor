@@ -13,6 +13,11 @@ public class RoundedRectangle extends Rectangle {
     }
 
     @Override
+    public boolean containsPosition(int x, int y) {
+        return super.containsPosition(x, y);
+    }
+
+    @Override
     public void draw(Graphics graphics) {
         graphics.drawRoundRect(posX1, posY1, width, length, arcWidth, arcHeight);
     }

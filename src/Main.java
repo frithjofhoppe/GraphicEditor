@@ -11,7 +11,7 @@ public class Main {
         shapes.add(new Rectangle(50,50,100,100));
         shapes.add(new RoundedRectangle(300,300,100,100,20,20));
         shapes.add(new Line(400,400,500,500));
-        shapes.add(new Circle(400,400,50));
+        shapes.add(new Circle(400,400,100));
 
         Drawing drawing = new Drawing(shapes);
 

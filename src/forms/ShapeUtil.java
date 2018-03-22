@@ -1,8 +1,10 @@
 package forms;
 
+import java.awt.geom.Point2D;
+
 public class ShapeUtil {
-    public static double getDistance(int x1, int y1, int x2, int y2){
-        System.out.println(Math.sqrt((x1 - x2) *  (x1 - x2) + (y1 - y2) *  (y1 - y2)));
-       return Math.sqrt((x1 - x2) *  (x1 - x2) + (y1 - y2) *  (y1 - y2));
+    public static double getDistance(double x1, double y1, double x2, double y2){
+        return Point2D.distance(x1,y1,x2,y2);
     }
+
 }

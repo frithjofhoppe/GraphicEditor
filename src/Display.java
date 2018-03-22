@@ -1,24 +1,32 @@
 import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import forms.Shape;
+import utilities.CSVUtil;
+import utilities.CaptureUtil;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.beans.EventHandler;
 
-public class Display extends JFrame implements MouseListener{
+public class Display extends JFrame {
     /** Die Liste der dargestellten Figur-Objekte */
     public Drawing drawing;
-    private KeyboardListener keyboardListener = new KeyboardListener();
-    private MousPositionListener mousePositionListener = new MousPositionListener();
+    private  KeyListener keyboardListener;
+    private  MouseListener mousePositionListener;
+    private final int xDifference = 0;
+    private final int yDiffernce = 0;
     /**
      * Konstruktor. Initialisiert das Fenster in der Mitte des Bildschirms und erzeugt ein
      * JFrame-Objekt, auf welchem die Figuren gezeichnet werden.
      */
     public Display() {
         Dimension windowSize = new Dimension(800, 600);
+        initListener();
+        addMouseListener(mousePositionListener);
         addKeyListener(keyboardListener);
-        addMouseListener(this);
         setSize(windowSize);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int windowPositionX = (screenSize.width - windowSize.width) / 2;
@@ -30,33 +38,57 @@ public class Display extends JFrame implements MouseListener{
         setVisible(true);
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        System.out.println("position x:" +e.getY() + " y:"+e.getY());
-        Shape s = drawing.getShapeAtPosition(e.getX(), e.getY());
-        if(s != null){
-            System.out.println(s.getClass());
-        }
-    }
+    private void initListener() {
+        mousePositionListener = new MouseListener () {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("X:"+e.getX() + " Y:" +e.getY());
+                System.out.println(CaptureUtil.getShape(drawing.shapes, e.getX()-xDifference, e.getY()-yDiffernce));
+            }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
+            @Override
+            public void mousePressed(MouseEvent e) {
 
-    }
+            }
 
-    @Override
-    public void mouseReleased(MouseEvent e) {
+            @Override
+            public void mouseReleased(MouseEvent e) {
 
-    }
+            }
 
-    @Override
-    public void mouseEntered(MouseEvent e) {
+            @Override
+            public void mouseEntered(MouseEvent e) {
 
-    }
+            }
 
-    @Override
-    public void mouseExited(MouseEvent e) {
+            @Override
+            public void mouseExited(MouseEvent e) {
 
+            }
+        };
+
+        keyboardListener = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyChar() == 's') {
+                    CSVUtil csv = new CSVUtil(drawing.shapes);
+                    csv.exportToPath();
+                }else if(e.getKeyChar() == 'o'){
+                    CSVUtil csv = new CSVUtil(drawing.shapes);
+                    csv.exportToPath();
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        };
     }
 
     public void setDrawing(Drawing drawing){

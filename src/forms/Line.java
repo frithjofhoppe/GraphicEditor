@@ -6,6 +6,13 @@ public class Line extends Shape{
     private int posX2;
     private int posY2;
 
+    public Line(String csv){
+        super(csv);
+        String[] split = csv.split(",");
+        posX2 = Integer.parseInt(split[3]);
+        posY2 = Integer.parseInt(split[4]);
+    }
+
     public Line(int posX1, int posY1, int posX2, int posY2) {
         super(posX1, posY1);
         this.posX2 = posX2;
@@ -35,5 +42,10 @@ public class Line extends Shape{
         super.move(deltaX, deltaY);
         posX2 += deltaX;
         posY2 += deltaY;
+    }
+
+    @Override
+    public String getShapeAsCsv() {
+           return "Line," + super.getPosX1() + "," + super.getPosY1() + "," + posX2 + "," + posY2;
     }
 }

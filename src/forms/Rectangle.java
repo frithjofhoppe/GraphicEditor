@@ -1,10 +1,19 @@
 package forms;
 
+import sun.plugin.dom.css.Rect;
+
 import java.awt.*;
 
-public class Rectangle extends Shape{
+public class Rectangle extends Shape {
     protected int length;
     protected int width;
+
+    public Rectangle(String csv) {
+        super(csv);
+        String[] split = csv.split(",");
+        length = Integer.parseInt(split[3]);
+        width = Integer.parseInt(split[4]);
+    }
 
     public Rectangle(int posX1, int posY1, int length, int width) {
         super(posX1, posY1);
@@ -19,6 +28,12 @@ public class Rectangle extends Shape{
 
     @Override
     public boolean containsPosition(int x, int y) {
+        if (x <= posX1 + length &&
+                x >= posX1 &&
+                y <= posY1 + width &&
+                y >= posY1) {
+            return true;
+        }
         return false;
     }
 
@@ -28,5 +43,10 @@ public class Rectangle extends Shape{
 
     public int getWidth() {
         return width;
+    }
+
+    @Override
+    public String getShapeAsCsv() {
+        return "Rectangle," + super.getPosX1() + "," + super.getPosY1() + "," + length + "," + width;
     }
 }

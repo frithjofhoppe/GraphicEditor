@@ -71,11 +71,15 @@ public class Display extends JFrame {
             @Override
             public void keyTyped(KeyEvent e) {
                 if (e.getKeyChar() == 's') {
-                    CSVUtil csv = new CSVUtil(drawing.shapes);
-                    csv.exportToPath();
+                    CSVUtil csv = new CSVUtil();
+                    csv.exportToPath(drawing.shapes);
                 }else if(e.getKeyChar() == 'o'){
-                    CSVUtil csv = new CSVUtil(drawing.shapes);
-                    csv.exportToPath();
+                    CSVUtil csv = new CSVUtil();
+                    csv.importFromPath().forEach(item -> {
+                        drawing.add(item);
+                    });
+                }else if(e.getKeyChar() == 'c'){
+                    drawing.deleteAll();
                 }
             }
 

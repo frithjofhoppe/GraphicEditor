@@ -11,6 +11,12 @@ abstract public class Shape {
         this.posY1 = posY1;
     }
 
+    public Shape(String csv){
+        String[] split = csv.split(",");
+        posX1 = Integer.parseInt(split[1]);
+        posY1 = Integer.parseInt(split[2]);
+    }
+
     public int getPosX1() {
         return posX1;
     }
@@ -27,4 +33,6 @@ abstract public class Shape {
         posX1 += deltaX;
         posY1 += deltaY;
     }
+
+    public abstract String getShapeAsCsv();
 }

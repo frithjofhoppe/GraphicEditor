@@ -23,6 +23,7 @@ public class Drawing extends JFrame {
     public void deleteAll() {
         shapes.clear();
         repaint();
+        System.out.println("CLEARED");
     }
 
     public void drawShapes(Graphics g) {

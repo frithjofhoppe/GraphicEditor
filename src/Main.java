@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         ArrayList<Shape> shapes = new ArrayList<>();
-        shapes.add(new Rectangle(50,50,100,100));
+        shapes.add(new Rectangle(0,0,100,100));
         shapes.add(new RoundedRectangle(300,300,100,100,20,20));
         shapes.add(new Line(400,400,500,500));
         shapes.add(new Circle(400,400,100));

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class Drawing extends JFrame {
 
     public ArrayList<Shape> shapes;
+    private Graphics graphics;
 
     public Drawing(ArrayList<Shape> shapes){
         this.shapes = shapes;
@@ -14,7 +15,17 @@ public class Drawing extends JFrame {
 
     public void add(Shape figur) {
         shapes.add(figur);
-        repaint();
+        redraw();
+    }
+
+    public void redraw(){
+//        repaint();
+        paintAll(graphics);
+    }
+
+    public void remove(Shape shape){
+        shapes.remove(shape);
+        redraw();
     }
 
     /**
@@ -22,14 +33,23 @@ public class Drawing extends JFrame {
      */
     public void deleteAll() {
         shapes.clear();
-        repaint();
+        redraw();
         System.out.println("CLEARED");
     }
 
-    public void drawShapes(Graphics g) {
+    public void drawShapes() {
            for(Shape a : shapes){
-               a.draw(g);
+               a.draw(graphics);
            }
+    }
+
+    @Override
+    public Graphics getGraphics() {
+        return graphics;
+    }
+
+    public void setGraphics(Graphics graphics) {
+        this.graphics = graphics;
     }
 
     public Shape getShapeAtPosition(int x, int y){

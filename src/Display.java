@@ -19,6 +19,7 @@ public class Display extends JFrame {
     private final int xDifference = 9;
     private final int yDiffernce = 39;
     private Shape current;
+    private Graphics graphics;
     /**
      * Konstruktor. Initialisiert das Fenster in der Mitte des Bildschirms und erzeugt ein
      * JFrame-Objekt, auf welchem die Figuren gezeichnet werden.
@@ -48,6 +49,7 @@ public class Display extends JFrame {
                 System.out.println(selection.getClass());
                 if(selection != null){
                     current = selection;
+//                    graphics.setColor(Color.cyan);
                 }
             }
 
@@ -57,6 +59,7 @@ public class Display extends JFrame {
                 Shape selection = CaptureUtil.getShape(drawing.shapes, e.getX()-xDifference, e.getY()-yDiffernce);
                 if(selection != null){
                     current = selection;
+
                 }
             }
 
@@ -149,6 +152,7 @@ public class Display extends JFrame {
                 super.paintComponent(g);
                 drawing.setGraphics(g);
                 drawShapes(g);
+                graphics = g;
             }
         });
     }

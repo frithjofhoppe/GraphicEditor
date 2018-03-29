@@ -22,7 +22,9 @@ public class Circle extends Shape{
 
     @Override
     public void draw(Graphics graphics) {
-        graphics.drawOval(super.posX1, super.posY1, radius, radius);
+        graphics.setColor(Color.BLUE);
+        graphics.fillOval(super.posX1, super.posY1, radius, radius);
+//        graphics.drawOval(super.posX1, super.posY1, radius, radius)
     }
 
     @Override

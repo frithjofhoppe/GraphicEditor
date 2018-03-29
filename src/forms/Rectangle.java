@@ -23,7 +23,9 @@ public class Rectangle extends Shape {
 
     @Override
     public void draw(Graphics graphics) {
-        graphics.drawRect(super.posX1, super.posY1, width, length);
+//        graphics.setColor(Color.red);
+        graphics.fillRect(super.posX1, super.posY1, width, length);
+//        graphics.drawRect(super.posX1, super.posY1, width, length);
     }
 
     @Override

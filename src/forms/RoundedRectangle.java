@@ -6,7 +6,7 @@ public class RoundedRectangle extends Rectangle {
     int arcWidth;
     int arcHeight;
 
-    public RoundedRectangle(String csv){
+    public RoundedRectangle(String csv) {
         super(csv);
         String[] split = csv.split(",");
         arcWidth = Integer.parseInt(split[5]);
@@ -31,6 +31,6 @@ public class RoundedRectangle extends Rectangle {
 
     @Override
     public String getShapeAsCsv() {
-        return super.getShapeAsCsv() + ","  + arcWidth + "," + arcHeight;
+        return "RoundedRectangle," + super.getPosX1() + "," + super.getPosY1() + "," + length + "," + width + "," + arcWidth + "," + arcHeight;
     }
 }

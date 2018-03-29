@@ -42,7 +42,6 @@ public class CSVUtil {
             while ((line = br.readLine()) != null) {
                 String[] split = line.split(",");
                 System.out.println(line);
-                Arrays.stream(split).forEach(item -> System.out.println(item));
                 int counter = 1;
                 switch (split[0]) {
                     case "Circle":
@@ -64,6 +63,7 @@ public class CSVUtil {
                 counter++;
             }
             System.out.println("CSV: SUCCESSFULLY IMPORTED");
+            JOptionPane.showMessageDialog(null, "Shapre were successfully imported");
             return imported;
         } catch (IOException ex) {
             System.out.println("CSV: Failure ocurred during IMPORT ");
@@ -75,10 +75,12 @@ public class CSVUtil {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
             for (Shape s : shapes) {
                 bw.write(s.getShapeAsCsv());
+                System.out.println(s.getShapeAsCsv());
                 bw.newLine();
             }
             bw.close();
             System.out.println("CSV: SUCCESSFULLY EXPORTED");
+            JOptionPane.showMessageDialog(null, "Shapre were successfully exported");
         } catch (IOException ex) {
             System.out.println("CSV: Failure occured during EXPORT");
         }

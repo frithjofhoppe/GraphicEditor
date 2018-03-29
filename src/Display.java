@@ -1,4 +1,3 @@
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import forms.Shape;
 import utilities.CSVUtil;
 import utilities.CaptureUtil;
@@ -9,7 +8,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.beans.EventHandler;
 
 public class Display extends JFrame {
     /** Die Liste der dargestellten Figur-Objekte */
@@ -18,7 +16,8 @@ public class Display extends JFrame {
     private  MouseListener mousePositionListener;
     private final int xDifference = 9;
     private final int yDiffernce = 39;
-    private Shape current;
+    private Shape currentMove;
+    private Shape currentClick;
     private Graphics graphics;
     /**
      * Konstruktor. Initialisiert das Fenster in der Mitte des Bildschirms und erzeugt ein
@@ -36,7 +35,6 @@ public class Display extends JFrame {
         Point windowPosition = new Point(windowPositionX, windowPositionY);
         setLocation(windowPosition);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        //createAndAddDrawingPanel();
         setVisible(true);
     }
 
@@ -44,12 +42,14 @@ public class Display extends JFrame {
         mousePositionListener = new MouseListener () {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println("X:"+e.getX() + " Y:" +e.getY());
-                Shape selection = CaptureUtil.getShape(drawing.shapes, e.getX()-xDifference, e.getY()-yDiffernce);
-                System.out.println(selection.getClass());
-                if(selection != null){
-                    current = selection;
-//                    graphics.setColor(Color.cyan);
+                if(e.getButton() == MouseEvent.BUTTON3) {
+                    System.out.println("X:" + e.getX() + " Y:" + e.getY());
+                    Shape selection = CaptureUtil.getShape(drawing.shapes, e.getX() - xDifference, e.getY() - yDiffernce);
+
+                    if (selection != null) {
+                        System.out.println(selection.getClass());
+                        currentClick = selection;
+                    }
                 }
             }
 
@@ -57,37 +57,38 @@ public class Display extends JFrame {
             public void mousePressed(MouseEvent e) {
                 System.out.println(e.getX() +" "+e.getY());
                 Shape selection = CaptureUtil.getShape(drawing.shapes, e.getX()-xDifference, e.getY()-yDiffernce);
-                if(selection != null){
-                    current = selection;
-
+                if(e.getButton() == MouseEvent.BUTTON1) {
+                    if (selection != null) {
+                        currentMove = selection;
+                    }
                 }
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
                 System.out.println(e.getX() +" "+e.getY());
-                if(current != null){
+                if(currentMove != null){
                     int x = e.getX()-xDifference;
                     int y = e.getY()-yDiffernce;
                     int diffX, diffY;
 
-                    if(x >= current.getPosX1()){
-                        diffX = x - current.getPosX1();
+                    if(x >= currentMove.getPosX1()){
+                        diffX = x - currentMove.getPosX1();
                     }else{
-                        diffX = current.getPosX1() - x;
+                        diffX = currentMove.getPosX1() - x;
                         diffX*=-1;
                     }
 
-                    if(y >= current.getPosY1()){
-                        diffY = y - current.getPosY1();
+                    if(y >= currentMove.getPosY1()){
+                        diffY = y - currentMove.getPosY1();
                     } else {
-                        diffY = current.getPosY1() - y;
+                        diffY = currentMove.getPosY1() - y;
                         diffY*=-1;
                     }
                     System.out.println("DIFF: X"+diffX + ", Y:"+diffY);
-                    current.move(diffX, diffY);
-                    drawing.redraw();
-                    current = null;
+                    currentMove.move(diffX, diffY);
+                    repaint();
+                    currentMove = null;
                 }
             }
 
@@ -106,21 +107,27 @@ public class Display extends JFrame {
             @Override
             public void keyTyped(KeyEvent e) {
                 if (e.getKeyChar() == 's') {
-                    current = null;
+                    currentMove = null;
+                    currentClick = null;
                     CSVUtil csv = new CSVUtil();
                     csv.exportToPath(drawing.shapes);
                 }else if(e.getKeyChar() == 'o'){
-                    current = null;
+                    currentMove = null;
+                    currentClick = null;
                     CSVUtil csv = new CSVUtil();
                     csv.importFromPath().forEach(item -> {
                         drawing.add(item);
                     });
+                    repaint();
                 }else if(e.getKeyChar() == 'c'){
                     drawing.deleteAll();
+                    repaint();
                 }else if(e.getKeyChar() == KeyEvent.VK_DELETE){
-                    if(current != null){
-                        drawing.remove(current);
-                        current = null;
+                    if(currentClick != null){
+                        drawing.remove(currentClick);
+                        repaint();
+                        currentClick = null;
+                        currentMove = null;
                     }
                 }
             }

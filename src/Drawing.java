@@ -19,8 +19,7 @@ public class Drawing extends JFrame {
     }
 
     public void redraw(){
-//        repaint();
-        paintAll(graphics);
+        repaint();
     }
 
     public void remove(Shape shape){
@@ -33,7 +32,7 @@ public class Drawing extends JFrame {
      */
     public void deleteAll() {
         shapes.clear();
-        redraw();
+//        redraw();
         System.out.println("CLEARED");
     }
 

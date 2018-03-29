@@ -17,11 +17,13 @@ public class Main {
 
         Rectangle r = new Rectangle(200,200,200,200);
         Circle c = new Circle(200,200,100);
-        ComplexShape cs = new ComplexShape(20,20);
+        ComplexShape cs = new ComplexShape(200,200);
         cs.addShape(r);
         cs.addShape(c);
 
         shapes.add(cs);
+
+
 
         Drawing drawing = new Drawing(shapes);
 
@@ -34,6 +36,7 @@ public class Main {
 //            s.move(50,50);
 //        }
 
+//        cs.move(100,100);
         DISPLAY.repaint();
     }
 }

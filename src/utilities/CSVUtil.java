@@ -39,8 +39,22 @@ public class CSVUtil {
         ArrayList<Shape> imported = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line;
+            ComplexShape complex = null;
+            boolean wasPreviousComplex = false;
             while ((line = br.readLine()) != null) {
                 String[] split = line.split(",");
+
+                if(split[0].substring(0,1).equals("x")){
+                    if(complex == null){
+                        complex = new ComplexShape(0,0);
+                    }
+                    wasPreviousComplex = true;
+                }else if(wasPreviousComplex){
+                    wasPreviousComplex = false;
+                    imported.add(complex);
+                    complex = null;
+                }
+
                 System.out.println(line);
                 int counter = 1;
                 switch (split[0]) {
@@ -56,17 +70,32 @@ public class CSVUtil {
                     case "RoundedRectangle":
                         imported.add(new RoundedRectangle(line));
                         break;
+                    case "x_Rectangle":
+                        complex.addShape(new Rectangle(line));
+                        break;
+                    case "x_Circle":
+                        complex.addShape(new Circle(line));
+                        break;
+                    case "x_Line":
+                        complex.addShape(new Line(line));
+                        break;
+                    case "x_RoundedRectangle":
+                        complex.addShape(new RoundedRectangle(line));
+                        break;
                     default:
                         System.out.println("WARNING: Shape on line:" + counter + " couldn't be found");
                         break;
                 }
                 counter++;
             }
+            if(wasPreviousComplex){
+                imported.add(complex);
+            }
             System.out.println("CSV: SUCCESSFULLY IMPORTED");
             JOptionPane.showMessageDialog(null, "Shapre were successfully imported");
             return imported;
         } catch (IOException ex) {
-            System.out.println("CSV: Failure ocurred during IMPORT ");
+            System.out.println("CSV: Failure ocurred during IMPORT");
         }
         return null;
     }

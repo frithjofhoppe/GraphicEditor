@@ -19,6 +19,28 @@ public class ComplexShape extends Shape {
     }
 
     @Override
+    public int getPosX1() {
+        int smallest = 1000000000;
+        for(Shape s: shapes){
+            if(s.getPosX1() < smallest){
+                smallest = s.getPosX1();
+            }
+        }
+        return smallest;
+    }
+
+    @Override
+    public int getPosY1() {
+        int largest = 1000000000;
+        for(Shape s: shapes){
+            if(s.getPosY1() < largest){
+                largest = s.getPosY1();
+            }
+        }
+        return largest;
+    }
+
+    @Override
     public void draw(Graphics graphics) {
         shapes.forEach(item -> item.draw(graphics));
     }
@@ -38,9 +60,9 @@ public class ComplexShape extends Shape {
     public String getShapeAsCsv() {
         String toReturn =  "";
         for (Shape shape : shapes) {
-            toReturn+=shape.getShapeAsCsv();
+            toReturn+= "x_" + shape.getShapeAsCsv() + "\r\n";
         }
-        return  toReturn;
+        return  toReturn.substring(0, toReturn.length()-3);
     }
 
     @Override

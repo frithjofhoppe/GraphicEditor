@@ -3,8 +3,8 @@ package forms;
 import java.awt.*;
 
 abstract public class Shape {
-    protected int posX1;
-    protected int posY1;
+    public int posX1;
+    public int posY1;
 
     public Shape(int posX1, int posY1) {
         this.posX1 = posX1;

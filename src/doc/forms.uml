@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>forms</OriginalElement>
+  <nodes>
+    <node x="0.0" y="539.0">forms.RoundedRectangle</node>
+    <node x="291.5" y="269.5">forms.Line</node>
+    <node x="24.5" y="280.5">forms.Rectangle</node>
+    <node x="0.0" y="771.0">forms.ShapeUtil</node>
+    <node x="425.0" y="0.0">forms.Shape</node>
+    <node x="825.5" y="258.0">forms.ComplexShape</node>
+    <node x="558.5" y="291.5">forms.Circle</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="forms.Line" target="forms.Shape">
+      <point x="0.0" y="-104.0" />
+      <point x="415.0" y="238.0" />
+      <point x="517.625" y="238.0" />
+      <point x="-30.875" y="104.0" />
+    </edge>
+    <edge source="forms.Rectangle" target="forms.Shape">
+      <point x="0.0" y="-93.0" />
+      <point x="148.0" y="228.0" />
+      <point x="455.875" y="228.0" />
+      <point x="-92.625" y="104.0" />
+    </edge>
+    <edge source="forms.RoundedRectangle" target="forms.Rectangle">
+      <point x="0.0" y="-93.5" />
+      <point x="0.0" y="93.0" />
+    </edge>
+    <edge source="forms.ComplexShape" target="forms.Shape">
+      <point x="0.0" y="-115.5" />
+      <point x="949.0" y="228.0" />
+      <point x="641.125" y="228.0" />
+      <point x="92.625" y="104.0" />
+    </edge>
+    <edge source="forms.Circle" target="forms.Shape">
+      <point x="0.0" y="-82.0" />
+      <point x="682.0" y="238.0" />
+      <point x="579.375" y="238.0" />
+      <point x="30.875" y="104.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="233.5" y="372.5" />
+  <SelectedNodes>
+    <node>forms.Circle</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+    <Category>Constructors</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

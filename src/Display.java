@@ -3,6 +3,7 @@ import forms.Rectangle;
 import forms.Shape;
 import utilities.CSVUtil;
 import utilities.CaptureUtil;
+import utilities.ICSVUtil;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -145,12 +146,12 @@ public class Display extends JFrame {
                 if (e.getKeyChar() == 's') {
                     currentMove = null;
                     currentClick = null;
-                    CSVUtil csv = new CSVUtil();
+                    ICSVUtil csv = new CSVUtil();
                     csv.exportToPath(drawing.shapes);
                 } else if (e.getKeyChar() == 'o') {
                     currentMove = null;
                     currentClick = null;
-                    CSVUtil csv = new CSVUtil();
+                    ICSVUtil csv = new CSVUtil();
                     csv.importFromPath().forEach(item -> {
                         drawing.add(item);
                     });
@@ -242,7 +243,7 @@ public class Display extends JFrame {
         btnExportFile.addActionListener(e -> {
             currentMove = null;
             currentClick = null;
-            CSVUtil csv = new CSVUtil();
+            ICSVUtil csv = new CSVUtil();
             csv.exportToPath(drawing.shapes);
         });
 
@@ -250,7 +251,7 @@ public class Display extends JFrame {
             drawing.deleteAll();
             currentMove = null;
             currentClick = null;
-            CSVUtil csv = new CSVUtil();
+            ICSVUtil csv = new CSVUtil();
             csv.importFromPath().forEach(item -> {
                 drawing.add(item);
             });

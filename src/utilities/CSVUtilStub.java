@@ -2,53 +2,18 @@ package utilities;
 
 import forms.*;
 
-import javax.swing.*;
-import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CSVUtil implements ICSVUtil {
-//    private List<Shape> shapes;
-//
-//    public CSVUtil(List<Shape> shapes) {
-//        this.shapes = shapes;
-//
-//    }
-
+public class CSVUtilStub implements ICSVUtil {
+    @Override
     public List<Shape> importFromPath() {
-        JFileChooser fileChooser = new JFileChooser();
-        if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            File file = fileChooser.getSelectedFile();
-            System.out.println("IMPORT " + file.getAbsolutePath());
-            List<String> raw = getRawImport(file.getAbsolutePath());
-            return generateShapes(raw);
-        }
-        return null;
+        List<String> rawShapes = new ArrayList<>();
+        rawShapes.add("Line,165,117,339,244");
+        rawShapes.add("Line,165,117,339,244");
+        rawShapes.add("Rectangle,176,95,85,419");
+        return generateShapes(rawShapes);
     }
-
-    public void exportToPath(List<Shape> shapes) {
-        JFileChooser fileChooser = new JFileChooser();
-        if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
-            File file = fileChooser.getSelectedFile();
-            System.out.println("EXPORT: " + file.getAbsolutePath());
-            saveFile(shapes, file.getAbsolutePath());
-        }
-    }
-
-    private List<String> getRawImport(String path) {
-        ArrayList<String> toReturn = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-            String line;
-            boolean wasPreviousComplex = false;
-            while ((line = br.readLine()) != null) {
-                toReturn.add(line);
-            }
-        } catch (IOException ex) {
-
-        }
-        return toReturn;
-    }
-
 
     private List<Shape> generateShapes(List<String> rawShapes) {
         ArrayList<Shape> imported = new ArrayList<>();
@@ -104,18 +69,9 @@ public class CSVUtil implements ICSVUtil {
         return imported;
     }
 
-    private void saveFile(List<Shape> shapes, String fileName) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
-            for (Shape s : shapes) {
-                bw.write(s.getShapeAsCsv());
-                System.out.println(s.getShapeAsCsv());
-                bw.newLine();
-            }
-            bw.close();
-            System.out.println("CSV: SUCCESSFULLY EXPORTED");
-            JOptionPane.showMessageDialog(null, "Shapre were successfully exported");
-        } catch (IOException ex) {
-            System.out.println("CSV: Failure occured during EXPORT");
-        }
+
+    @Override
+    public void exportToPath(List<Shape> shapes) {
+
     }
 }

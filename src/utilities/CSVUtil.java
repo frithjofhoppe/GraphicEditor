@@ -4,6 +4,7 @@ import forms.*;
 
 import javax.swing.*;
 import java.io.*;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,8 @@ public class CSVUtil implements ICSVUtil {
 
     private List<String> getRawImport(String path) {
         ArrayList<String> toReturn = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(path));
             String line;
             boolean wasPreviousComplex = false;
             while ((line = br.readLine()) != null) {

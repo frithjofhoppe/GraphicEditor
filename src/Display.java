@@ -93,9 +93,9 @@ public class Display extends JFrame {
                     if (toCreate instanceof Line) {
                         toCreate = new Line(toCreateX1, toCreateY1, toCreateX2, toCreateY2);
                     }  else if (toCreate instanceof RoundedRectangle) {
-                        toCreate = new RoundedRectangle(toCreateX1, toCreateY1, Math.abs(toCreateY1-toCreateY2), Math.abs(toCreateX1 - toCreateX2), 50, 50);
+                        toCreate = new RoundedRectangle(Math.min(toCreateX1, toCreateX2), Math.min(toCreateY2, toCreateY1), Math.abs(toCreateY1-toCreateY2), Math.abs(toCreateX1 - toCreateX2), 50, 50);
                     }else if (toCreate instanceof Rectangle) {
-                        toCreate = new Rectangle(toCreateX1, toCreateY1, Math.abs(toCreateY1-toCreateY2), Math.abs(toCreateX1 - toCreateX2));
+                        toCreate = new Rectangle(Math.min(toCreateX1, toCreateX2), Math.min(toCreateY2, toCreateY1), Math.abs(toCreateY1-toCreateY2), Math.abs(toCreateX1 - toCreateX2));
                     } else if (toCreate instanceof Circle) {
                         toCreate = new Circle(toCreateX1, toCreateY1, (int)ShapeUtil.getDistance(toCreateX1, toCreateY1, toCreateX2, toCreateY2));
                     }

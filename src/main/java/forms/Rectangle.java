@@ -29,9 +29,9 @@ public class Rectangle extends Shape {
 
     @Override
     public boolean containsPosition(int x, int y) {
-        if (x <= posX1 + length &&
+        if (x <= posX1 + width &&
                 x >= posX1 &&
-                y <= posY1 + width &&
+                y <= posY1 + length &&
                 y >= posY1) {
             return true;
         }

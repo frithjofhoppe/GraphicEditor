@@ -52,7 +52,7 @@ public class Display extends JFrame {
 
     private void initListener() {
         mousePositionListener = new MouseListener() {
-            @Override
+
             public void mouseClicked(MouseEvent e) {
                 if (e.getButton() == MouseEvent.BUTTON3) {
                     System.out.println("X:" + e.getX() + " Y:" + e.getY());
@@ -65,7 +65,7 @@ public class Display extends JFrame {
                 }
             }
 
-            @Override
+
             public void mousePressed(MouseEvent e) {
                 System.out.println(e.getX() + " " + e.getY());
 
@@ -83,7 +83,7 @@ public class Display extends JFrame {
                 }
             }
 
-            @Override
+
             public void mouseReleased(MouseEvent e) {
                 System.out.println(e.getX() + " " + e.getY());
                 if (toCreate != null) {
@@ -129,19 +129,19 @@ public class Display extends JFrame {
                 }
             }
 
-            @Override
+
             public void mouseEntered(MouseEvent e) {
 
             }
 
-            @Override
+
             public void mouseExited(MouseEvent e) {
 
             }
         };
 
         keyboardListener = new KeyListener() {
-            @Override
+
             public void keyTyped(KeyEvent e) {
                 if (e.getKeyChar() == 's') {
                     currentMove = null;
@@ -169,12 +169,12 @@ public class Display extends JFrame {
                 }
             }
 
-            @Override
+
             public void keyPressed(KeyEvent e) {
 
             }
 
-            @Override
+
             public void keyReleased(KeyEvent e) {
 
             }
@@ -283,6 +283,7 @@ public class Display extends JFrame {
     private JButton toolBarButton(String realtivePath) {
         JButton button = new JButton();
         try {
+
             Image img = ImageIO.read(getClass().getResource(realtivePath));
             button.setIcon(new ImageIcon(img));
         } catch (IOException exception) {
